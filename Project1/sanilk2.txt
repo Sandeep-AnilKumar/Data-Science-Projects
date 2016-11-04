@@ -1,0 +1,17 @@
+If the attribute "area" in Dim_Type can have more than one value then I think this column would be similar to the Address column, which can have Street name, City, State in one column. To work around this we can divide Dim_Type table into two seperate tables i.e. Dim_Type into Dim_Type and Dim_Type_Area. Dim_Type can then have a schema like 
+(id number, area_id number, type varchar);
+primary_key would be id, area_id
+Dim_type.area_id will be a foreign key, which references Dim_Type_Area.id
+
+e.g. now Dim_Type can have two areas for same id.
+id	area_id
+1	2
+1	3
+
+where 2 and 3 can be any valid id's from Dim_Type_Area table.
+
+Dim_Type_Area can have schema like 
+(id number, area varchar);
+primary_key would be id.
+
+Ofcourse we would have to normalize the tables to avoid redundancies and other dependencies issues.

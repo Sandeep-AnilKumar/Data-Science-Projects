@@ -1,0 +1,3 @@
+http://text-analytics101.rxnlp.com/2014/10/all-about-stop-words-for-text-mining.html
+https://bitbucket.org/kganes2/text-mining-resources/downloads
+

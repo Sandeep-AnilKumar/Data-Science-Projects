@@ -1,0 +1,32 @@
+I have the following files in my submission zip: -
+1) fetch_tweets.py (given) for retrieving the tweets. The term I used was "fox news" and I am writing the output to search_output_sanilk2.txt.
+2) sanilk2.py : - code which preprocesses the tweets, removes stopwords, URL's, hashtags, @mentions, puncutations and writes the tweets to cleaned_tweets_sanilk2.txt. I later removes duplicates tweets from cleaned_tweets_sanilk2.txt and write the unique tweets to unique_tweets_sanilk2.txt. I have done this elaborate process so as to make the vectorizer as perfect as possible and also for some bonus points.
+3) cleaned_tweets_sanilk2.txt
+4) unique_tweets_sanilk2.txt
+5) Report on the performances and scores for evaluating the vectorizers.
+6) README file (this file)
+7) References (for stop words)
+
+For bonus points I have tried out the trigrams version by making ngram_range=(1,3) for each of the vectorizers and other appropriate changes. If I had more time I would have tried POS taggings using nltk library.
+
+Outputs:-
+I have given outputs for: -
+1) TF-IDF Vectorizer
+2) Count Vectorizer
+3) Hashing Vectorizer
+4) TF-IDF Vectorizer for clustering using k-means (this gave words as features rather than tweets).
+5) TF-IDF Vectorizer for clustering using my own generic algorithm to give out tweets similar to first 5 tweets in the corpus. In my algorithm I start by taking first 5 tweets from my corpus and then for each tweet I construct cosine similarity for it with all other tweets. Later I sort the tweets similarity and give out tweets that are similar to the tweets used. Here if a tweet has a cosine similarity of 1 then I am not printing that since it is the same tweet. Do let me know if you have any difficulty in understanding the algorithm or anything in the code I will be happy to help.
+---------------
+BONUS
+---------------
+6) TF-IDF Vectorizer Trigrams
+7) Count Vectorizer Trigrams
+8) Hashing Vectorizer Trigrams
+
+Please let me know if you have any difficulty in running any code. I have hardcoded the value for the query at line 74. This is the only place where if you enter the query, all the vectorizers will take this as the query. Please change this to your needs for testing.
+
+query_to_search = ['megyn kelly hillary trump']
+
+Also please keep all the files like cleaned_tweets_sanilk2.txt, unique_tweets_sanilk2.txt for better performance. In case you do not need them, let me know and I can sit with you and edit the code for testing. Thank you for your time and patience. Have a good day.
+
+

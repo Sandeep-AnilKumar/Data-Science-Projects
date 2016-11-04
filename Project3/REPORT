@@ -1,0 +1,32 @@
+I have tried out all the 3 vectorizers and also for bonus I have tried all the 3 vectorizers with trigrams.
+TF-IDF vectorizer is better than count vectorizer as count vectorizer works only on the frequency of words and cannot capture the information gain criteria given by tf-idf. Also it cannot efficiently distinguish between tweets of very similar nature. Hence tf-idf is a good vectorizer.
+As given in the documentation of sklearn and also for obvious reasons when the corpus increases, the memory increases to hold it. Since both tf-idf and count hold in- memory mapping from the string tokens to the integer feature indices. And these can cause below problems: -
+1) fitting requires the allocation of intermediate data structures of size proportional to that of the original dataset.
+2) building the word-mapping requires a full pass over the dataset hence it is not possible to fit text classifiers in a strictly online manner.
+3) it is not easily possible to split the vectorization work into concurrent sub tasks as the vocabulary attribute would have to be a shared state with a fine grained synchronization barrier: the mapping from token string to feature index is dependent on ordering of the first occurrence of each token hence would have to be shared, potentially harming the concurrent workers’ performance to the point of making them slower than the sequential variant.
+
+REFERENCES for above points: - http://scikit-learn.org/stable/modules/feature_extraction.html#vectorizing-a-large-text-corpus-with-the-hashing-trick
+
+This can be overcome by using Hashing vectorizer which combines the features of feature hasher and count vectorizer. With hashing vectorizer we can perform out-of-core scaling which can help in learning for data that does not fit in the memory.
+
+Performace metrics for my corpus: -
+None of the tweets in my corpus had all the search query 'megyn kelly trump hillary' in the same query. So i am giving the scores based on the 10
+tweets retrieved by each vectorizer and if each of them got 'megyn kelly' the most frequent query term in the corpus
+TF-IDF Vectorizer : -
+Precision: 26/82
+Recall: 5/10
+F score: 0.388
+
+Count Vectorizer: -
+Precision: 26/82
+Recall: 5/10
+F score: 0.388
+
+Hashing Vectorizer: -
+Precision: 26/82
+Recall: 6/10
+F score: 0.414
+
+Since the corpus is very small the values are really not indicative of the power of each of these vectorizers. Overall I prefer Hashing Vectorizer over TF-IDF and count vectorizer for performance reasons and also for better scaling capabilities.
+
+
